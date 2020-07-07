@@ -16,18 +16,22 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   const heartButton = document.getElementById("heart")
-  const likesNumber = document.getElementById(".likes")
+  const likesNumber = document.querySelector(".likes")
 
   heartButton.addEventListener("click", function(event) {
     let numberLiked = document.getElementById(`${counter.innerText}`);
-    numberLiked ? numberLiked.children[0].innerText++ :
-    likesNumber.innerHTML += `<li id=${counter.innerText}>
-      ${counter.innerText} is liked
-      <span id=${counter.innerText}>
-      1
-      </span>
-      times.
-      </li>`
+    if ( numberLiked ) {
+       numberLiked.children[0].innerText++
+    } else {
+      likesNumber.innerHTML += `
+        <li id=${counter.innerText}>
+          ${counter.innerText} is liked
+          <span> 1 </span>
+          times.
+        </li>
+      `
+    }
+      // span is child
     });
 
 
@@ -35,10 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const  submitButton = document.getElementById("submit")
 
   pauseButton.addEventListener("click", function(event) {
+
     if (pauseButton.innerText === "pause"){
       pauseButton.innerText = "resume"
       clearInterval(countNumber)
-
       plusButton.disabled = true;
       minusButton.disabled = true;
       heartButton.disabled = true;
@@ -60,9 +64,10 @@ document.addEventListener("DOMContentLoaded", function() {
   submitButton.addEventListener("click", function(event){
     event.preventDefault();
     let comment = document.getElementById("comment-input").value
-    commentList.innerHTML += `<li>${comment}</li>`
+    commentList.innerHTML += `<li class="garett">${comment}</li>`
     document.getElementById("comment-form").reset();
   });
 
 });
+
 
